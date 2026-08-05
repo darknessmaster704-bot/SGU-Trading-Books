@@ -1,0 +1,157 @@
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serifs;
+  background-image: 
+    linear-gradient(rgba(50, 58, 41, 0.75)), url(../img/translucent-petals-3840x2160-25855.jpg);
+  background-size: cover;
+}
+
+.nav-bar{
+  background-color: rgba(255, 255, 255, 0.15); 
+  border-radius: 50px;
+  width: 1140px;
+  height: 50px;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  -webkit-backdrop-filter: blur(10px); /* لدعم متصفح Safari */
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.2);
+}
+
+/* الحاوية الرئيسية للمربع */
+.search-box {
+  position: relative;
+  width: 100%;
+  max-width: 500px; /* الرمز لحجم المربع */
+  margin: 0 auto;
+}
+
+/* تنسيق حقل الكتابة */
+.search-box input {
+  width: 100%;
+  padding: 12px 20px 12px 45px; /* مسافة من الشمال للإيقونة */
+  border-radius: 30px; /* الحواف الدائرية مثل تصميم Dribbble */
+  border: none;
+  outline: none;
+  font-size: 16px;
+  background-color: #ffffff;
+  color: #333;
+  caret-color: rgb(78, 183, 218); /* لون المؤشر */
+}
+
+/* وضع الإيقونة داخل المربع */
+.search-box .search-icon {
+  position: absolute;
+  left: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #888;
+  font-size: 18px;
+  pointer-events: none;
+}
+
+.nav-links {
+  display: flex;
+  gap: 20px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-links a {
+  color: white;
+  display: inline-block;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  padding: 4px 8px;
+  background-color: rgb(78, 183, 218);
+  border: 1px solid rgb(78, 183, 218);
+  border-radius: 50px;
+}
+.nav-links a:hover {
+  background-color: rgb(136, 192, 210);
+  cursor: pointer;
+  transform: translateX(2px);
+}
+
+.home{
+  margin: auto 5px;
+}
+.nav-btns {
+  display: flex;
+  gap: 10px;
+  margin-left: auto;
+}
+
+.sign-in,
+.sign-up {
+  transition: all 0.3s ease;
+  padding: 5px 10px;
+  border-radius: 50px;
+  color: white;
+}
+.sign-in {
+  background-color: transparent;
+  border: 2px solid rgb(78, 183, 218);
+  margin: 20px 0 20px auto;
+}
+
+.sign-in:hover {
+  background-color: rgba(255, 255, 255, 0.235);
+  cursor: pointer;
+  transform: translateX(-2px);
+}
+
+.sign-up {
+  background-color: rgb(78, 183, 218);
+  border: 1px solid rgb(78, 183, 218);
+  margin: 20px 5px;
+}
+
+.sign-up:hover {
+  background-color: rgb(136, 192, 210);
+  cursor: pointer;
+  transform: translateX(-2px);
+}
+
+/* إزالة النقط الهامشية وتنسيق القائمة */
+.termlinks {
+  display: flex;
+  justify-content: space-around;
+  gap: 15px;
+  width: 100%;
+  max-width: 1100px;
+  list-style: none; /* عشان تشيل النقط بتاعة القائمة */
+  padding: 0;
+  margin: 20px auto;
+}
+
+/* تنسيق اللينك نفسه عشان يبان كشكل بيضاوي */
+.termlinks a {
+  display: inline-block;
+  color: white;
+  text-decoration: none;
+  background-color: rgb(75, 74, 74); /* لون الخلفية البيضاوية (ممكن تغيره) */
+  padding: 10px 24px; /* مساحة داخلية فوق/تحت واليمين/الشمال */
+  border-radius: 50px; /* السر في الشكل البيضاوي */
+  border: 1px solid rgba(255, 255, 255, 0.3); /* إطار خفيف اختياري */
+  transition: all 0.3s ease;
+}
+
+/* تأثير الـ Hover عند التمرير بالماوس */
+.termlinks a:hover {
+  background-color: rgba(255, 255, 255, 0.463);
+  color: #1a1a1a;
+  transform: translateY(-2px); /* رفعة خفيفة لفوق بتدي شكل جمالي */
+}
+
+h1, 
+p{
+  text-align: center;
+  color: white;
+  margin-top: 50px;
+}
