@@ -10,17 +10,17 @@ body {
     position: relative;
     overflow: hidden;
     min-height: 100vh;
+    background-color: #100e0b;
 }
 
 /* Layer 1 - hard-light */
 .aura-layer-1 {
     position: absolute;
     inset: 0;
-    background: linear-gradient(rgba(0, 0, 0, 0) 0%, rgba(0, 138, 255, 0.9) 40%, rgb(255, 255, 255) 70%, rgb(247, 164, 66) 80%, rgb(233, 66, 247) 100%);
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 138, 255, 0.85) 35%, rgba(255, 255, 255, 0.95) 65%, rgba(247, 164, 66, 0.95) 80%, rgba(233, 66, 247, 0.95) 100%);
     mix-blend-mode: hard-light;
-    filter: blur(88px);
-    transform: translateZ(0);
-    will-change: transform;
+    filter: blur(45px);
+    -webkit-filter: blur(45px);
     pointer-events: none;
 }
 
@@ -28,24 +28,18 @@ body {
 .aura-layer-2 {
     position: absolute;
     inset: 0;
-    background: linear-gradient(rgba(0, 0, 0, 0) 0%, rgba(0, 138, 255, 0.9) 40%, rgb(255, 255, 255) 70%, rgb(247, 164, 66) 80%, rgb(233, 66, 247) 100%);
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 138, 255, 0.75) 40%, rgba(255, 255, 255, 0.85) 70%, rgba(247, 164, 66, 0.85) 85%, rgba(233, 66, 247, 0.85) 100%);
     mix-blend-mode: soft-light;
-    filter: blur(10px);
-    transform: translateZ(0);
-    will-change: transform;
+    filter: blur(25px);
+    -webkit-filter: blur(25px);
     pointer-events: none;
 }
 
-/* Layer 3 - normal */
+/* Layer 3 - Overlay Normal */
 .aura-layer-3 {
     position: absolute;
     inset: 0;
-    background: linear-gradient(to top, rgb(0, 0, 31) 0%, rgba(0, 0, 31, 0.85) 8.1%, rgba(0, 0, 31, 0.7) 15.5%, rgba(0, 0, 31, 0.55) 22.5%, rgba(0, 0, 31, 0.4) 29%, rgba(0, 0, 31, 0.25) 35.3%, rgba(0, 0, 31, 0.15) 41.2%, rgba(0, 0, 31, 0) 50%);
-    mix-blend-mode: normal;
-    filter: blur(180px);
-    opacity: 0.1;
-    transform: translateZ(0);
-    will-change: transform;
+    background: linear-gradient(to top, rgba(0, 0, 31, 0.8) 0%, rgba(0, 0, 31, 0.3) 30%, rgba(0, 0, 31, 0) 60%);
     pointer-events: none;
 }
 
@@ -76,7 +70,17 @@ body {
     box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.2);
 }
 
-/* 1. ضبط التنسيق الأساسي للروابط */
+/* ضبط التنسيق الأساسي للروابط */
+.nav-links {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 15px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
 .nav-links a {
     color: #ffffff;
     display: inline-flex;
@@ -93,19 +97,11 @@ body {
     border-radius: 50px;
     font-size: 14px;
     position: relative;
-    overflow: hidden; /* لمنع خروج العناصر أثناء الحركة */
+    overflow: hidden;
     transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
-.nav-links {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    gap: 15px;
-    list-style: none; /* لإلغاء النقاط السوداء */
-    margin: 0;
-    padding: 0;
-}
-/* 2. ضبط الأيقونة (إضافة transition للاختفاء السلس) */
+
+/* ضبط الأيقونة */
 .nav-links a svg,
 .nav-links a i {
     width: 18px;
@@ -116,7 +112,7 @@ body {
     transition: opacity 0.5s ease, transform 0.5s ease, width 0.5s ease, margin 0.5s ease;
 }
 
-/* 3. إخفاء النص في الوضع الطبيعي */
+/* إخفاء النص في الوضع الطبيعي */
 .nav-text {
     max-width: 0;
     opacity: 0;
@@ -125,44 +121,34 @@ body {
     transition: max-width 0.4s ease, opacity 0.3s ease, transform 0.3s ease;
 }
 
-/* ==========================================
-   تأثير الـ Hover (الإخفاء والظهور السلس)
-   ========================================== */
-
-/* إخفاء الأيقونة تصغيرها عند التقريب */
+/* تأثير الـ Hover للروابط */
 .nav-links a:hover svg,
 .nav-links a:hover i {
     opacity: 0;
     transform: scale(0);
-    width: 0; /* لإزالتها من المساحة ليحل النص محلها تماماً */
+    width: 0;
     margin: 0;
 }
 
-/* إظهار النص وتكبيره بمرونة */
 .nav-links a:hover .nav-text {
-    max-width: 100px; /* يعطي مساحة للنص ليتمدد */
+    max-width: 100px;
     opacity: 1;
     transform: scale(1);
 }
 
-/* تأثير الـ Hover العام للزر */
 .nav-links a:hover {
     background: rgba(0, 138, 255, 0.4);
     border-color: rgba(255, 255, 255, 0.5);
     transform: translateX(-2px);
 }
+
 .nav-btns {
     display: flex;
     align-items: center;
     gap: 10px;
 }
 
-/* زر تسجيل الدخول */
-/* ==========================================
-   أزرار Sign-in و Sign-up (الأيقونة أولاً ثم النص)
-   ========================================== */
-
-/* 1. زر تسجيل الدخول (Sign in) */
+/* أزرار Sign-in و Sign-up */
 .sign-in {
     color: #ffffff;
     background: rgba(255, 255, 255, 0.08);
@@ -187,10 +173,9 @@ body {
     background: rgba(0, 138, 255, 0.25);
     border-color: rgba(0, 138, 255, 0.8);
     transform: translateX(-2px);
-    padding: 8px 20px; /* توسيع بسيط ليناسب النص */
+    padding: 8px 20px;
 }
 
-/* 2. زر إنشاء حساب (Sign up) */
 .sign-up {
     color: #ffffff;
     background: rgba(0, 138, 255, 0.5);
@@ -220,7 +205,6 @@ body {
     padding: 8px 20px;
 }
 
-/* 3. الأيقونة: ظاهرة في الوضع الافتراضي */
 .sign-in svg,
 .sign-up svg {
     width: 18px;
@@ -230,7 +214,6 @@ body {
     transition: opacity 0.5s ease, max-width 0.5s ease, margin-right 0.5s ease;
 }
 
-/* 4. النص: مخفي في الوضع الافتراضي */
 .sign-in span,
 .sign-up span {
     opacity: 0;
@@ -240,7 +223,6 @@ body {
     transition: opacity 0.5s ease, max-width 0.5s ease;
 }
 
-/* 5. عند التمرير (Hover): إخفاء الأيقونة وإظهار النص */
 .sign-in:hover svg,
 .sign-up:hover svg {
     opacity: 0;
@@ -251,7 +233,7 @@ body {
 .sign-in:hover span,
 .sign-up:hover span {
     opacity: 1;
-    max-width: 100px; /* يعطي مساحة كافية للكلمة لتظهر */
+    max-width: 100px;
 }
 
 /* أزرار الفصول الدراسية */
@@ -303,10 +285,7 @@ h1, p {
     margin-top: 20px;
 }
 
-/* ==========================================
-   مربع البحث الزجاجي (Glassmorphism Search Bar)
-   ========================================== */
-
+/* مربع البحث الزجاجي */
 .search-box {
     position: relative;
     width: 90%;
@@ -322,13 +301,11 @@ h1, p {
     outline: none;
     font-size: 16px;
     
-    /* خلفية زجاجية مع تأثير الضبابية */
-    background: rgba(0, 136, 255, 0.546);
+    background: rgba(0, 136, 255, 0.25);
     -webkit-backdrop-filter: blur(12px);
     backdrop-filter: blur(12px);
     
-    /* إطار ملون متناسق */
-    border: 1.5px solid rgba(56, 160, 252, 0.991);
+    border: 1.5px solid rgba(56, 160, 252, 0.8);
     color: #ffffff;
     caret-color: #008aff;
     
@@ -337,25 +314,22 @@ h1, p {
     transition: background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
-/* تغيير لون النص التوضيحي (Placeholder) */
 .search-box input::placeholder {
-    color: rgba(255, 255, 255, 0.6);
+    color: rgba(255, 255, 255, 0.7);
 }
 
-/* تأثير التفاعل والتكبير عند الضغط والكتابة */
 .search-box input:focus {
-    background: rgba(0, 138, 255, 0.22);
-    border-color: rgba(0, 138, 255, 0.8);
-    box-shadow: 0 6px 25px rgba(0, 138, 255, 0.4);
+    background: rgba(0, 138, 255, 0.4);
+    border-color: rgba(255, 255, 255, 0.9);
+    box-shadow: 0 6px 25px rgba(0, 138, 255, 0.5);
 }
 
-/* أيقونة البحث */
 .search-box .search-icon {
     position: absolute;
     left: 18px;
     top: 50%;
     transform: translateY(-50%);
-    color: rgba(255, 255, 255, 0.7);
+    color: rgba(255, 255, 255, 0.8);
     font-size: 18px;
     pointer-events: none;
     transition: color 0.3s ease;
