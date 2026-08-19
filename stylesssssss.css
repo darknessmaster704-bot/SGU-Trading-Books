@@ -1,0 +1,366 @@
+/* Aurora Nova - Exact Site Colors & Glassmorphism Design */
+
+body {
+    background-color: #100e0b;
+    margin: 0;
+    padding: 0;
+}
+
+.aura-bg {
+    position: relative;
+    overflow: hidden;
+    min-height: 100vh;
+}
+
+/* Layer 1 - hard-light */
+.aura-layer-1 {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(rgba(0, 0, 0, 0) 0%, rgba(0, 138, 255, 0.9) 40%, rgb(255, 255, 255) 70%, rgb(247, 164, 66) 80%, rgb(233, 66, 247) 100%);
+    mix-blend-mode: hard-light;
+    filter: blur(88px);
+    transform: translateZ(0);
+    will-change: transform;
+    pointer-events: none;
+}
+
+/* Layer 2 - soft-light */
+.aura-layer-2 {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(rgba(0, 0, 0, 0) 0%, rgba(0, 138, 255, 0.9) 40%, rgb(255, 255, 255) 70%, rgb(247, 164, 66) 80%, rgb(233, 66, 247) 100%);
+    mix-blend-mode: soft-light;
+    filter: blur(10px);
+    transform: translateZ(0);
+    will-change: transform;
+    pointer-events: none;
+}
+
+/* Layer 3 - normal */
+.aura-layer-3 {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgb(0, 0, 31) 0%, rgba(0, 0, 31, 0.85) 8.1%, rgba(0, 0, 31, 0.7) 15.5%, rgba(0, 0, 31, 0.55) 22.5%, rgba(0, 0, 31, 0.4) 29%, rgba(0, 0, 31, 0.25) 35.3%, rgba(0, 0, 31, 0.15) 41.2%, rgba(0, 0, 31, 0) 50%);
+    mix-blend-mode: normal;
+    filter: blur(180px);
+    opacity: 0.1;
+    transform: translateZ(0);
+    will-change: transform;
+    pointer-events: none;
+}
+
+/* Content wrapper */
+.aura-content {
+    position: relative;
+    z-index: 1;
+}
+
+/* الشريط العلوي */
+.nav-bar {
+    background-color: rgba(255, 255, 255, 0.15); 
+    border-radius: 50px;
+    width: 90%;
+    max-width: 1140px;
+    height: 50px;
+    position: sticky;
+    top: 15px;
+    margin: 15px auto;
+    z-index: 100;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 15px;
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.2);
+}
+
+/* 1. ضبط التنسيق الأساسي للروابط */
+.nav-links a {
+    color: #ffffff;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    
+    background: rgba(0, 138, 255, 0.2);
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    
+    padding: 8px 14px;
+    border-radius: 50px;
+    font-size: 14px;
+    position: relative;
+    overflow: hidden; /* لمنع خروج العناصر أثناء الحركة */
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.nav-links {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 15px;
+    list-style: none; /* لإلغاء النقاط السوداء */
+    margin: 0;
+    padding: 0;
+}
+/* 2. ضبط الأيقونة (إضافة transition للاختفاء السلس) */
+.nav-links a svg,
+.nav-links a i {
+    width: 18px;
+    height: 18px;
+    stroke-width: 2px;
+    opacity: 1;
+    transform: scale(1);
+    transition: opacity 0.5s ease, transform 0.5s ease, width 0.5s ease, margin 0.5s ease;
+}
+
+/* 3. إخفاء النص في الوضع الطبيعي */
+.nav-text {
+    max-width: 0;
+    opacity: 0;
+    white-space: nowrap;
+    transform: scale(0.8);
+    transition: max-width 0.4s ease, opacity 0.3s ease, transform 0.3s ease;
+}
+
+/* ==========================================
+   تأثير الـ Hover (الإخفاء والظهور السلس)
+   ========================================== */
+
+/* إخفاء الأيقونة تصغيرها عند التقريب */
+.nav-links a:hover svg,
+.nav-links a:hover i {
+    opacity: 0;
+    transform: scale(0);
+    width: 0; /* لإزالتها من المساحة ليحل النص محلها تماماً */
+    margin: 0;
+}
+
+/* إظهار النص وتكبيره بمرونة */
+.nav-links a:hover .nav-text {
+    max-width: 100px; /* يعطي مساحة للنص ليتمدد */
+    opacity: 1;
+    transform: scale(1);
+}
+
+/* تأثير الـ Hover العام للزر */
+.nav-links a:hover {
+    background: rgba(0, 138, 255, 0.4);
+    border-color: rgba(255, 255, 255, 0.5);
+    transform: translateX(-2px);
+}
+.nav-btns {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* زر تسجيل الدخول */
+/* ==========================================
+   أزرار Sign-in و Sign-up (الأيقونة أولاً ثم النص)
+   ========================================== */
+
+/* 1. زر تسجيل الدخول (Sign in) */
+.sign-in {
+    color: #ffffff;
+    background: rgba(255, 255, 255, 0.08);
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+    
+    border: 1.5px solid rgba(0, 138, 255, 0.4);
+    padding: 8px 16px;
+    border-radius: 50px;
+    font-size: 14px;
+    
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    cursor: pointer;
+    
+    transition: transform 0.3s ease, background-color 0.3s ease, border-color 0.5s ease, padding 0.5s ease;
+}
+
+.sign-in:hover {
+    background: rgba(0, 138, 255, 0.25);
+    border-color: rgba(0, 138, 255, 0.8);
+    transform: translateX(-2px);
+    padding: 8px 20px; /* توسيع بسيط ليناسب النص */
+}
+
+/* 2. زر إنشاء حساب (Sign up) */
+.sign-up {
+    color: #ffffff;
+    background: rgba(0, 138, 255, 0.5);
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+    
+    border: 1.5px solid rgba(255, 255, 255, 0.4);
+    box-shadow: 0 4px 12px rgba(0, 138, 255, 0.3);
+    
+    padding: 8px 16px;
+    border-radius: 50px;
+    font-size: 14px;
+    
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    cursor: pointer;
+    
+    transition: transform 0.5s ease, background-color 0.5s ease, box-shadow 0.5s ease, padding 0.5s ease;
+}
+
+.sign-up:hover {
+    background: rgba(0, 138, 255, 0.75);
+    box-shadow: 0 6px 18px rgba(0, 138, 255, 0.5);
+    transform: translateX(-2px);
+    padding: 8px 20px;
+}
+
+/* 3. الأيقونة: ظاهرة في الوضع الافتراضي */
+.sign-in svg,
+.sign-up svg {
+    width: 18px;
+    height: 18px;
+    opacity: 1;
+    max-width: 20px;
+    transition: opacity 0.5s ease, max-width 0.5s ease, margin-right 0.5s ease;
+}
+
+/* 4. النص: مخفي في الوضع الافتراضي */
+.sign-in span,
+.sign-up span {
+    opacity: 0;
+    max-width: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    transition: opacity 0.5s ease, max-width 0.5s ease;
+}
+
+/* 5. عند التمرير (Hover): إخفاء الأيقونة وإظهار النص */
+.sign-in:hover svg,
+.sign-up:hover svg {
+    opacity: 0;
+    max-width: 0;
+    margin-right: 0;
+}
+
+.sign-in:hover span,
+.sign-up:hover span {
+    opacity: 1;
+    max-width: 100px; /* يعطي مساحة كافية للكلمة لتظهر */
+}
+
+/* أزرار الفصول الدراسية */
+.termlinks {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 12px;
+    width: 90%;
+    max-width: 1100px;
+    list-style: none;
+    padding: 0;
+    margin: 30px auto;
+}
+
+.termlinks li {
+    list-style: none;
+}
+
+.termlinks a {
+    display: inline-block;
+    color: #ffffff;
+    text-decoration: none;
+    
+    background: rgba(0, 138, 255, 0.15); 
+    -webkit-backdrop-filter: blur(12px);
+    backdrop-filter: blur(12px);
+    
+    border: 1px solid rgba(0, 138, 255, 0.35);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    
+    padding: 10px 24px;
+    border-radius: 50px;
+    transition: transform 0.3s ease, background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.termlinks a:hover {
+    background: rgba(0, 138, 255, 0.3);
+    border-color: rgba(255, 255, 255, 0.6);
+    box-shadow: 0 6px 20px rgba(0, 138, 255, 0.4);
+    transform: translateY(-2px);
+}
+
+/* النصوص الرئيسية */
+h1, p {
+    text-align: center;
+    color: white;
+    margin-top: 20px;
+}
+
+/* ==========================================
+   مربع البحث الزجاجي (Glassmorphism Search Bar)
+   ========================================== */
+
+.search-box {
+    position: relative;
+    width: 90%;
+    max-width: 500px;
+    margin: 30px auto;
+    transition: transform 0.3s ease;
+}
+
+.search-box input {
+    width: 100%;
+    padding: 14px 20px 14px 45px;
+    border-radius: 50px;
+    outline: none;
+    font-size: 16px;
+    
+    /* خلفية زجاجية مع تأثير الضبابية */
+    background: rgba(0, 136, 255, 0.546);
+    -webkit-backdrop-filter: blur(12px);
+    backdrop-filter: blur(12px);
+    
+    /* إطار ملون متناسق */
+    border: 1.5px solid rgba(56, 160, 252, 0.991);
+    color: #ffffff;
+    caret-color: #008aff;
+    
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    box-sizing: border-box;
+    transition: background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* تغيير لون النص التوضيحي (Placeholder) */
+.search-box input::placeholder {
+    color: rgba(255, 255, 255, 0.6);
+}
+
+/* تأثير التفاعل والتكبير عند الضغط والكتابة */
+.search-box input:focus {
+    background: rgba(0, 138, 255, 0.22);
+    border-color: rgba(0, 138, 255, 0.8);
+    box-shadow: 0 6px 25px rgba(0, 138, 255, 0.4);
+}
+
+/* أيقونة البحث */
+.search-box .search-icon {
+    position: absolute;
+    left: 18px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 18px;
+    pointer-events: none;
+    transition: color 0.3s ease;
+}
+
+.search-box input:focus + .search-icon {
+    color: #ffffff;
+}
