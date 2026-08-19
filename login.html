@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sign In / Sign Up - SGU</title>
+<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+  <header class="nav-bar">
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="contact.html">Contact</a></li>
+      <li><a href="upload.html">Upload</a></li>
+    </ul>
+    <div class="nav-btns">
+      <a href="login.html?mode=signin" class="sign-in" style="text-decoration:none;display:inline-flex;align-items:center;gap:6px;">
+        <i class="fa-solid fa-right-to-bracket"></i> Sign In
+      </a>
+      <a href="login.html?mode=signup" class="sign-up" style="text-decoration:none;display:inline-flex;align-items:center;gap:6px;">
+        <i class="fa-solid fa-user-plus"></i> Sign Up
+      </a>
+    </div>
+  </header>
+
+  <main>
+    <div class="auth-container">
+      <div id="signInForm" class="auth-box">
+        <h1><i class="fa-solid fa-right-to-bracket"></i> Sign In</h1>
+        <p>Welcome back! Sign in to your account.</p>
+
+        <form onsubmit="event.preventDefault(); handleSignIn();">
+          <div class="form-group">
+            <label><i class="fa-solid fa-envelope"></i> Email</label>
+            <input type="email" id="signInEmail" placeholder="your@email.com" required>
+          </div>
+          <div class="form-group">
+            <label><i class="fa-solid fa-lock"></i> Password</label>
+            <input type="password" id="signInPassword" placeholder="Your password" required>
+          </div>
+          <button type="submit" class="submit-btn">
+            <i class="fa-solid fa-right-to-bracket"></i> Sign In
+          </button>
+        </form>
+
+        <p class="auth-switch">Do not have an account? <a href="#" onclick="showSignUp()">Sign Up</a></p>
+      </div>
+
+      <div id="signUpForm" class="auth-box" style="display:none;">
+        <h1><i class="fa-solid fa-user-plus"></i> Sign Up</h1>
+        <p>Create a new account to start sharing files.</p>
+
+        <form onsubmit="event.preventDefault(); handleSignUp();">
+          <div class="form-group">
+            <label><i class="fa-solid fa-user"></i> Full Name</label>
+            <input type="text" id="signUpName" placeholder="Your full name" required>
+          </div>
+          <div class="form-group">
+            <label><i class="fa-solid fa-envelope"></i> Email</label>
+            <input type="email" id="signUpEmail" placeholder="your@email.com" required>
+          </div>
+          <div class="form-group">
+            <label><i class="fa-solid fa-lock"></i> Password</label>
+            <input type="password" id="signUpPassword" placeholder="Min 6 characters" minlength="6" required>
+          </div>
+          <div class="form-group">
+            <label><i class="fa-solid fa-lock"></i> Confirm Password</label>
+            <input type="password" id="signUpConfirm" placeholder="Repeat password" required>
+          </div>
+          <button type="submit" class="submit-btn">
+            <i class="fa-solid fa-user-plus"></i> Create Account
+          </button>
+        </form>
+
+        <p class="auth-switch">Already have an account? <a href="#" onclick="showSignIn()">Sign In</a></p>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <p>&copy; 2026 SGU Trading Books. Built by students, for students.</p>
+  </footer>
+
+  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-storage-compat.js"></script>
+  <script src="firebase-config.js"></script>
+  <script src="auth.js"></script>
+  <script>
+    const urlParams = new URLSearchParams(window.location.search);
+    const mode = urlParams.get('mode');
+    if (mode === 'signup') {
+      document.getElementById('signInForm').style.display = 'none';
+      document.getElementById('signUpForm').style.display = 'block';
+    }
+
+    function showSignUp() {
+      document.getElementById('signInForm').style.display = 'none';
+      document.getElementById('signUpForm').style.display = 'block';
+    }
+    function showSignIn() {
+      document.getElementById('signUpForm').style.display = 'none';
+      document.getElementById('signInForm').style.display = 'block';
+    }
+
+    function handleSignIn() {
+      const email = document.getElementById('signInEmail').value;
+      const password = document.getElementById('signInPassword').value;
+      signIn(email, password);
+    }
+
+    function handleSignUp() {
+      const name = document.getElementById('signUpName').value;
+      const email = document.getElementById('signUpEmail').value;
+      const password = document.getElementById('signUpPassword').value;
+      const confirm = document.getElementById('signUpConfirm').value;
+
+      if (password !== confirm) {
+        alert('Passwords do not match!');
+        return;
+      }
+      if (password.length < 6) {
+        alert('Password must be at least 6 characters!');
+        return;
+      }
+      signUp(email, password, name);
+    }
+  </script>
+</body>
+</html>
